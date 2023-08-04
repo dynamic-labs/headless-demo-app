@@ -1,0 +1,100 @@
+/* Updated CSS for the Profile component */
+
+/* Styles for the profile page to center content */
+.profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* General styles for the profile container */
+.profile-container {
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f5f8ff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for user info */
+.user-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styles for the connected wallets container */
+.profile-wallets-container {
+  margin-bottom: 20px;
+}
+
+/* Styles for the connected wallets inner container using CSS Grid */
+.profile-wallets-inner-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+/* Styles for each connected wallet item in the grid */
+.wallet-item {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Styles for the wallet address and chain */
+.wallet-address,
+.wallet-chain {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px;
+}
+
+/* Styles for the Unlink button */
+.profile-wallet-button {
+  --dynamic-brand-primary-color: #4779ff;
+  background-color: var(--dynamic-brand-primary-color);
+  font-family: "DM Sans", sans-serif;
+  border-radius: 1.5rem;
+  color: white;
+  cursor: pointer;
+  padding: 8px 15px;
+  border: none;
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover effect for the Unlink button */
+.profile-wallet-button:hover {
+  background-color: #325c9e;
+}
+
+/* Styles for the "No connected wallets" message */
+.no-wallets-message {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styles for the "Connect Wallet" button */
+.profile-button {
+  --dynamic-brand-primary-color: #4779ff;
+  background-color: var(--dynamic-brand-primary-color);
+  font-family: "DM Sans", sans-serif;
+  border-radius: 1.5rem;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+/* Hover effect for the "Connect Wallet" button */
+.profile-button:hover {
+  background-color: #325c9e;
+}
