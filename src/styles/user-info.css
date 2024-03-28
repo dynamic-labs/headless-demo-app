@@ -1,25 +1,21 @@
-/* CSS for the User Info section */
 .user-info {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* CSS for the title container */
 .title-container {
   display: flex;
   align-items: center;
 }
 
-/* CSS for the title (h6) */
 .title-container h6 {
   font-size: 1.2rem;
   font-weight: bold;
   margin: 0;
-  margin-right: 10px; /* Add some space between title and button */
+  margin-right: 10px;
 }
 
-/* CSS for the "Update" button */
 .update-button {
   padding: 5px 10px;
   background-color: #4779ff;
@@ -29,19 +25,39 @@
   cursor: pointer;
 }
 
-/* CSS for the paragraphs (p) */
 .user-info p {
   margin: 0;
-  padding: 5px 10px; /* Add spacing around each paragraph */
+  padding: 5px 10px;
 }
 
-/* CSS to display paragraphs in one row */
 .user-info .user-details {
   display: flex;
   justify-content: center;
 }
 
-/* Add spacing between paragraphs in one row */
 .user-info .user-details p:not(:last-child) {
+  margin-right: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.form__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
   margin-right: 10px;
 }

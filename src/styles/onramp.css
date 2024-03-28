@@ -1,0 +1,9 @@
+.onramp-button {
+  width: 100%;
+  padding: 5px 10px;
+  background-color: #4779ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

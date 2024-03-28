@@ -1,14 +1,12 @@
 import Profile from "./Profile";
+import Authenticate from "./Authenticate";
 
-const Main = ({ showDynamicNav, setShowDynamicNav }) => {
-  return (
-    <div>
-      <Profile
-        showDynamicNav={showDynamicNav}
-        setShowDynamicNav={setShowDynamicNav}
-      />
-    </div>
-  );
+import { useIsLoggedIn } from "@dynamic-labs/sdk-react-core";
+
+const Main = () => {
+  const { useIsLoggedIn } = useDynamicContext();
+
+  return <div>{useIsLoggedIn ? <Profile /> : <Authenticate />}</div>;
 };
 
 export default Main;

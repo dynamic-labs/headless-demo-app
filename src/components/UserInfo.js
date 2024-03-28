@@ -2,7 +2,7 @@ import {
   useDynamicContext,
   useUserUpdateRequest,
   useEmailVerificationRequest,
-} from "@dynamic-labs/sdk-react";
+} from "@dynamic-labs/sdk-react-core";
 import { useState } from "react";
 
 import "../styles/user-info.css";
@@ -76,8 +76,16 @@ export const UserInfo = () => {
               </button>
             </div>
             <div className="user-details">
-              <p>First name: {user.firstName} </p>
-              <p>E-Mail: {user.email} </p>
+              {user?.firstName && <p>First name: {user.firstName} </p>}
+              {user?.email && <p>E-Mail: {user.email} </p>}
+              {user?.alias && <p>Alias: {user.alias} </p>}
+              {user?.lastName && <p>Last name: {user.lastName} </p>}
+              {user?.jobTitle && <p>Job: {user.jobTitle} </p>}
+              {user?.phoneNumber && <p>Phone: {user.phoneNumber} </p>}
+              {user?.tShirtSize && <p>Tshirt size: {user.tShirtSize} </p>}
+              {user?.team && <p>Team: {user.team} </p>}
+              {user?.country && <p>Country: {user.country} </p>}
+              {user?.username && <p>Username: {user.username} </p>}
             </div>
           </div>
 
@@ -86,7 +94,9 @@ export const UserInfo = () => {
             <div>
               <form onSubmit={onProfileFormSubmit} className="form">
                 <div className="form__row">
-                  <label htmlFor="firstName">First-Name</label>
+                  <label className="label" htmlFor="firstName">
+                    First-Name
+                  </label>
                   <input
                     id="firstName"
                     className="form__input"
@@ -95,7 +105,9 @@ export const UserInfo = () => {
                   />
                 </div>
                 <div className="form__row">
-                  <label htmlFor="email">E-Mail</label>
+                  <label className="label" htmlFor="email">
+                    E-Mail
+                  </label>
                   <input
                     type="email"
                     id="email"

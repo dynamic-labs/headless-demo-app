@@ -1,0 +1,17 @@
+.email-username-inputs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  margin: 1rem 0;
+}
+
+.optional-text {
+  margin: 0.2rem;
+  padding: 0.2rem;
+  font-size: smaller;
+}

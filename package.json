@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@dynamic-labs/sdk-react": "0.17.25",
+    "@dynamic-labs/ethereum": "*",
+    "@dynamic-labs/ethereum-aa": "*",
+    "@dynamic-labs/sdk-react-core": "*",
+    "@dynamic-labs/wallet-book": "*",
+    "@dynamic-labs/wallet-connector-core": "*",
     "@material-tailwind/react": "^2.0.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -11,7 +15,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-tooltip": "^5.20.0",
     "web-vitals": "^2.1.4"
+  },
+  "overrides": {
+    "typescript": "4.9.5"
   },
   "scripts": {
     "start": "react-scripts start",

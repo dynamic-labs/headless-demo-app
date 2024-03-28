@@ -10,17 +10,28 @@
 
 /* General styles for the profile container */
 .profile-container {
-  max-width: 600px;
+  width: 400px;
   padding: 20px;
   background-color: #f5f8ff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.profile-bottom-actions-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Styles for user info */
-.user-info {
-  text-align: center;
+.user-info-container {
+  padding-bottom: 20px;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-bottom: black solid 1px;
 }
 
 /* Styles for the connected wallets container */
@@ -31,7 +42,7 @@
 /* Styles for the connected wallets inner container using CSS Grid */
 .profile-wallets-inner-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   grid-gap: 10px;
 }
 
@@ -68,6 +79,12 @@
   transition: background-color 0.2s ease;
 }
 
+/* Disabled state for the Unlink button */
+.profile-wallet-button:disabled {
+  background-color: #d9d9d9;
+  cursor: not-allowed;
+}
+
 /* Hover effect for the Unlink button */
 .profile-wallet-button:hover {
   background-color: #325c9e;
@@ -97,4 +114,18 @@
 /* Hover effect for the "Connect Wallet" button */
 .profile-button:hover {
   background-color: #325c9e;
+}
+
+.dynamic-widget {
+  display: none;
+}
+
+.secondary-button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  background-color: #4779ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
