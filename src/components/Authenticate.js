@@ -10,6 +10,7 @@ const Authenticate = () => {
 
   return (
     <div className="authenticate-container">
+      <h3>Please Signup/Login to continue</h3>
       <div className="modes-container">
         <button className="mode" onClick={() => setShowEmailFlow(true)}>
           Email
