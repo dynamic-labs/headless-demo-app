@@ -4,9 +4,9 @@ import Authenticate from "./Authenticate";
 import { useIsLoggedIn } from "@dynamic-labs/sdk-react-core";
 
 const Main = () => {
-  const { useIsLoggedIn } = useDynamicContext();
+  const isLoggedIn = useIsLoggedIn();
 
-  return <div>{useIsLoggedIn ? <Profile /> : <Authenticate />}</div>;
+  return <div>{isLoggedIn ? <Profile /> : <Authenticate />}</div>;
 };
 
 export default Main;
