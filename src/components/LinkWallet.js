@@ -1,13 +1,18 @@
-import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
+import { useDynamicModals } from "@dynamic-labs/sdk-react-core";
+
+import { Button } from "@chakra-ui/react";
 
 const LinkWallet = ({ text }) => {
-  const { setShowAuthFlow } = useDynamicContext();
+  const { setShowLinkNewWalletModal } = useDynamicModals();
 
   return (
     <div className="link-wallet-container">
-      <button className="profile-button" onClick={() => setShowAuthFlow(true)}>
+      <Button
+        className="profile-button"
+        onClick={() => setShowLinkNewWalletModal(true)}
+      >
         {text}
-      </button>
+      </Button>
     </div>
   );
 };

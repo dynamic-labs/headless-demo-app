@@ -2,6 +2,8 @@ import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
 import WalletIconWrapped from "./WalletIcon";
 
+import { Button, ButtonGroup, VStack } from "@chakra-ui/react";
+
 import "../styles/primary-wallet.css";
 
 const PrimaryWallet = () => {
@@ -12,24 +14,24 @@ const PrimaryWallet = () => {
   };
 
   return (
-    <div className="primary-wallet-container">
+    <VStack spacing={"24px"} className="primary-wallet-container">
       <h3>Primary Wallet</h3>
       <div className="primary-wallet-info-container">
         <WalletIconWrapped connector={primaryWallet.connector} />
         <p>...{primaryWallet.address.slice(-6)}</p>
       </div>
-      <div className="primary-wallet-actions-container">
-        <button
+      <ButtonGroup className="primary-wallet-actions-container">
+        <Button
           className="secondary-button"
           onClick={() => copyWalletAddress()}
         >
           Copy wallet address
-        </button>
-        <button className="secondary-button" onClick={() => handleLogOut()}>
+        </Button>
+        <Button className="secondary-button" onClick={() => handleLogOut()}>
           Disconnect
-        </button>
-      </div>
-    </div>
+        </Button>
+      </ButtonGroup>
+    </VStack>
   );
 };
 

@@ -1,13 +1,15 @@
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
+import { Button } from "@chakra-ui/react";
+
 const Logout = () => {
   const { handleLogOut } = useDynamicContext();
 
   return (
     <div className="log-out-container">
-      <button className="profile-button" onClick={() => handleLogOut()}>
+      <Button className="profile-button" onClick={() => handleLogOut()}>
         Log out
-      </button>
+      </Button>
     </div>
   );
 };

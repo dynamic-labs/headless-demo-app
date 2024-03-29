@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Main from "./components/Main";
-import Alert from "./components/Alert";
+import AlertWrapper from "./components/Alert";
+
+import { ChakraProvider } from "@chakra-ui/react";
+
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
@@ -18,55 +21,57 @@ function App() {
 
   return (
     <div className="App">
-      <DynamicContextProvider
-        settings={{
-          environmentId: process.env.REACT_APP_DYNAMIC_ENVIRONMENT_ID,
-          walletConnectors: [
-            EthereumWalletConnectors,
-            ZeroDevSmartWalletConnectors,
-          ],
-          eventsCallbacks: {
-            onLinkSuccess: (args) => {
-              setAlertProps({
-                show: true,
-                type: "success",
-                message: "Wallet linked!",
-              });
+      <ChakraProvider>
+        <DynamicContextProvider
+          settings={{
+            environmentId: process.env.REACT_APP_DYNAMIC_ENVIRONMENT_ID,
+            walletConnectors: [
+              EthereumWalletConnectors,
+              ZeroDevSmartWalletConnectors,
+            ],
+            eventsCallbacks: {
+              onLinkSuccess: (args) => {
+                setAlertProps({
+                  show: true,
+                  type: "success",
+                  message: "Wallet linked!",
+                });
+              },
+              onAuthSuccess: (args) => {
+                setAlertProps({
+                  show: true,
+                  type: "success",
+                  message: "Auth success!",
+                });
+              },
+              onLogout: (args) => {
+                setAlertProps({
+                  show: true,
+                  type: "success",
+                  message: "Logout success!",
+                });
+              },
+              onUserProfileUpdate: (user) => {
+                setAlertProps({
+                  show: true,
+                  type: "success",
+                  message: "Profile update success!",
+                });
+              },
             },
-            onAuthSuccess: (args) => {
-              setAlertProps({
-                show: true,
-                type: "success",
-                message: "Auth success!",
-              });
-            },
-            onLogout: (args) => {
-              setAlertProps({
-                show: true,
-                type: "success",
-                message: "Logout success!",
-              });
-            },
-            onUserProfileUpdate: (user) => {
-              setAlertProps({
-                show: true,
-                type: "success",
-                message: "Profile update success!",
-              });
-            },
-          },
-        }}
-      >
-        {alertProps.show && (
-          <Alert
-            setAlertProps={setAlertProps}
-            show={alertProps.show}
-            type={alertProps.type}
-            message={alertProps.message}
-          />
-        )}
-        <Main />
-      </DynamicContextProvider>
+          }}
+        >
+          {alertProps.show && (
+            <AlertWrapper
+              setAlertProps={setAlertProps}
+              show={alertProps.show}
+              type={alertProps.type}
+              message={alertProps.message}
+            />
+          )}
+          <Main />
+        </DynamicContextProvider>
+      </ChakraProvider>
     </div>
   );
 }

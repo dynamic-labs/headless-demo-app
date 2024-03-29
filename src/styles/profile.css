@@ -25,6 +25,7 @@
 
 /* Styles for user info */
 .user-info-container {
+  min-width: 100%;
   padding-bottom: 20px;
   margin-bottom: 20px;
   display: flex;

@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 
+import { Alert, AlertIcon, AlertTitle, Box } from "@chakra-ui/react";
+
 import "../styles/alert.css";
 
-const Alert = ({ setAlertProps, show, type, message, onClose }) => {
+const AlertWrapper = ({ setAlertProps, show, type, message }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setAlertProps({
@@ -26,15 +28,16 @@ const Alert = ({ setAlertProps, show, type, message, onClose }) => {
   return (
     <>
       {show && (
-        <div className={`alert alert-${type}`}>
-          <div className="alert-message">{message}</div>
-          <button className="alert-close-button" onClick={handleDismiss}>
-            Close
-          </button>
-        </div>
+        <Alert status={type}>
+          <AlertIcon />
+          <Box>
+            <AlertTitle>{message}</AlertTitle>
+          </Box>
+          <button onClick={handleDismiss}>Close</button>
+        </Alert>
       )}
     </>
   );
 };
 
-export default Alert;
+export default AlertWrapper;

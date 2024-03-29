@@ -1,21 +1,26 @@
+import { useState } from "react";
+
+import { useConnectWithEmailOtp } from "@dynamic-labs/sdk-react-core";
+
+import { Input, Button, Flex, Checkbox } from "@chakra-ui/react";
+
 import "../styles/signup.css";
 
-import {
-  useConnectWithEmailOtp,
-  useDynamicContext,
-} from "@dynamic-labs/sdk-react-core";
+const EmailSignup = ({
+  createEmbeddedWallet,
+  setShouldCreateEmbeddedWallet,
+}) => {
+  const [waitingForOtp, setWaitingForOtp] = useState(false);
+  const [waitingForAuth, setWaitingForAuth] = useState(false);
 
-const EmailSignup = () => {
-  const { user } = useDynamicContext();
-
-  const { connectWithEmail, verifyOneTimePassword } = useConnectWithEmailOtp({
-    provider: "dynamic",
-  });
+  const { connectWithEmail, verifyOneTimePassword } = useConnectWithEmailOtp();
 
   const onSubmitEmailHandler = async (event) => {
     event.preventDefault();
 
     const email = event.currentTarget.email.value;
+
+    setWaitingForOtp(true);
 
     await connectWithEmail(email);
   };
@@ -25,27 +30,50 @@ const EmailSignup = () => {
 
     const otp = event.currentTarget.otp.value;
 
+    setWaitingForAuth(true);
+    setWaitingForOtp(false);
+
     await verifyOneTimePassword(otp);
+    setWaitingForAuth(false);
+  };
+
+  const handleEmbeddedWalletCreationChange = (event) => {
+    const isChecked = event.target.checked;
+
+    if (createEmbeddedWallet !== isChecked) {
+      setShouldCreateEmbeddedWallet(isChecked);
+    }
   };
 
   return (
     <div>
-      <form key="email-form" onSubmit={onSubmitEmailHandler}>
-        <input type="email" name="email" placeholder="Email" />
-        <button type="submit">Submit</button>
-      </form>
-
-      <form key="otp-form" onSubmit={onSubmitOtpHandler}>
-        <input type="text" name="otp" placeholder="OTP" />
-        <button type="submit">Submit</button>
-      </form>
-
-      {!!user && (
-        <div>
-          <p>Authenticated user:</p>
-          <pre>{JSON.stringify(user, null, 2)}</pre>
-        </div>
+      {!waitingForOtp && (
+        <form key="email-form" onSubmit={onSubmitEmailHandler}>
+          <Flex>
+            <Input type="email" name="email" placeholder="Enter your email" />
+            <Button type="submit">Submit</Button>
+          </Flex>
+          <Checkbox
+            onChange={handleEmbeddedWalletCreationChange}
+            defaultChecked
+          >
+            Create an embedded wallet?
+          </Checkbox>
+        </form>
       )}
+
+      {waitingForOtp && !waitingForAuth && (
+        <form key="otp-form" onSubmit={onSubmitOtpHandler}>
+          <Flex>
+            <Input type="text" name="otp" placeholder="Enter your OTP" />
+            <Button type="submit">Submit</Button>
+          </Flex>
+        </form>
+      )}
+
+      {waitingForOtp && !waitingForAuth && <p>Waiting for your OTP...</p>}
+
+      {waitingForAuth && <p>Waiting for authentication...</p>}
     </div>
   );
 };

@@ -12,7 +12,8 @@ import CustomNetworkPicker from "./NetworkPicker";
 import "react-tooltip/dist/react-tooltip.css";
 import Socials from "./Socials";
 import Onramp from "./Onramp";
-import Signup from "./Email";
+
+import { Button, ButtonGroup, VStack } from "@chakra-ui/react";
 
 const Profile = () => {
   const { primaryWallet, user } = useDynamicContext();
@@ -23,29 +24,28 @@ const Profile = () => {
     <div className="profile-page">
       <div className="profile-container">
         {user && (
-          <div className="profile-header">
-            <button
+          <ButtonGroup className="profile-header">
+            <Button
               onClick={() => {
                 setShowProfile(true);
                 setShowWallets(false);
               }}
             >
               Profile
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => {
                 setShowProfile(false);
                 setShowWallets(true);
               }}
             >
               Wallets
-            </button>
-          </div>
+            </Button>
+          </ButtonGroup>
         )}
 
         {showProfile && (
           <div>
-            <h1>Profile</h1>
             <div className="user-info-container">
               <UserInfo />
               <Socials />
@@ -59,12 +59,15 @@ const Profile = () => {
               <div className="no-wallets-message">
                 <p>No connected wallets.</p>
                 <LinkWallet text="Link a wallet" />
+                <Logout />
               </div>
             ) : (
               <div>
-                <PrimaryWallet />
-                <CustomNetworkPicker />
-                <LinkedWallets />
+                <VStack spacing="2F4px">
+                  <PrimaryWallet />
+                  <CustomNetworkPicker />
+                  <LinkedWallets />
+                </VStack>
 
                 <div className="profile-main-actions-container">
                   <Onramp />

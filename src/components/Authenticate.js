@@ -1,17 +1,30 @@
-import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
+import {
+  useDynamicModals,
+  useDynamicContext,
+} from "@dynamic-labs/sdk-react-core";
 import Email from "./Email";
 import { useState } from "react";
 
+import { Button } from "@chakra-ui/react";
+
 import "../styles/authenticate.css";
 
-const Authenticate = () => {
+const Authenticate = ({
+  createEmbeddedWallet,
+  setShouldCreateEmbeddedWallet,
+}) => {
+  const { setShowAuthFlow } = useDynamicContext();
   const [showEmailFlow, setShowEmailFlow] = useState(false);
   const [showWalletAuthFlow, setShowWalletAuthFlow] = useState(false);
-  const { setShowAuthFlow } = useDynamicContext();
+
+  const { setShowLinkNewWalletModal } = useDynamicModals();
 
   const handleWalletAuth = () => {
     setShowWalletAuthFlow(true);
     setShowAuthFlow(true);
+    // setShowLinkNewWalletModal(true);
+
+    setShouldCreateEmbeddedWallet(false);
 
     if (showEmailFlow) setShowEmailFlow(false);
   };
@@ -22,17 +35,24 @@ const Authenticate = () => {
         <div>
           <h3>Please Signup/Login to continue</h3>
           <div className="modes-container">
-            <button className="mode" onClick={() => setShowEmailFlow(true)}>
+            <Button className="mode" onClick={() => setShowEmailFlow(true)}>
               Email
-            </button>
-            <button className="mode" onClick={() => handleWalletAuth()}>
+            </Button>
+            <Button className="mode" onClick={() => handleWalletAuth()}>
               Wallet
-            </button>
+            </Button>
           </div>
         </div>
       )}
 
-      <div className="authenticate-option">{showEmailFlow && <Email />}</div>
+      <div className="authenticate-option">
+        {showEmailFlow && (
+          <Email
+            createEmbeddedWallet={createEmbeddedWallet}
+            setShouldCreateEmbeddedWallet={setShouldCreateEmbeddedWallet}
+          />
+        )}
+      </div>
     </div>
   );
 };

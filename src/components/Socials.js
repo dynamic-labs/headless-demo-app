@@ -1,5 +1,7 @@
 import { useSocialAccounts } from "@dynamic-labs/sdk-react-core";
 
+import { Flex } from "@chakra-ui/react";
+
 import "../styles/socials.css";
 
 const Avatar = ({ avatarUrl }) => {
@@ -41,7 +43,7 @@ const UserProfileSocialAccount = ({ provider }) => {
   const connectedAccountInfo = getLinkedAccountInformation(provider);
 
   return (
-    <div className="single-social-container">
+    <Flex>
       <div className="icon">
         {isProviderLinked ? (
           <Avatar avatarUrl={connectedAccountInfo?.avatar} />
@@ -67,7 +69,7 @@ const UserProfileSocialAccount = ({ provider }) => {
           Connect
         </button>
       )}
-    </div>
+    </Flex>
   );
 };
 
@@ -83,11 +85,11 @@ const Socials = () => {
   ];
 
   return (
-    <div className="socials-container">
+    <Flex direction="column" align="stretch">
       {providers.map((provider) => (
         <UserProfileSocialAccount provider={provider} />
       ))}
-    </div>
+    </Flex>
   );
 };
 
