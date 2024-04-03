@@ -4,7 +4,7 @@ import Authenticate from "./Authenticate";
 
 import { useIsLoggedIn, useEmbeddedWallet } from "@dynamic-labs/sdk-react-core";
 
-const Main = () => {
+const Main = ({ setViews }) => {
   const { createEmbeddedWallet, userHasEmbeddedWallet } = useEmbeddedWallet();
 
   const isLoggedIn = useIsLoggedIn();
@@ -38,6 +38,7 @@ const Main = () => {
         <Profile />
       ) : (
         <Authenticate
+          setViews={setViews}
           createEmbeddedWallet={createEmbeddedWallet}
           setShouldCreateEmbeddedWallet={setShouldCreateEmbeddedWallet}
         />

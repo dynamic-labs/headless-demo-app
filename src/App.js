@@ -13,6 +13,8 @@ import { ZeroDevSmartWalletConnectors } from "@dynamic-labs/ethereum-aa";
 import "./App.css";
 
 function App() {
+  const [views, setViews] = useState([]);
+
   const [alertProps, setAlertProps] = useState({
     show: false,
     type: "",
@@ -24,6 +26,9 @@ function App() {
       <ChakraProvider>
         <DynamicContextProvider
           settings={{
+            overrides: {
+              views,
+            },
             environmentId: process.env.REACT_APP_DYNAMIC_ENVIRONMENT_ID,
             walletConnectors: [
               EthereumWalletConnectors,
@@ -69,7 +74,7 @@ function App() {
               message={alertProps.message}
             />
           )}
-          <Main />
+          <Main setViews={setViews} />
         </DynamicContextProvider>
       </ChakraProvider>
     </div>

@@ -1,7 +1,7 @@
-import {
-  useDynamicModals,
-  useDynamicContext,
-} from "@dynamic-labs/sdk-react-core";
+import { DynamicEmbeddedWidget } from "@dynamic-labs/sdk-react-core";
+
+import { SdkViewSectionType, SdkViewType } from "@dynamic-labs/sdk-api";
+
 import Email from "./Email";
 import { useState } from "react";
 
@@ -10,21 +10,27 @@ import { Button } from "@chakra-ui/react";
 import "../styles/authenticate.css";
 
 const Authenticate = ({
+  setViews,
   createEmbeddedWallet,
   setShouldCreateEmbeddedWallet,
 }) => {
-  const { setShowAuthFlow } = useDynamicContext();
   const [showEmailFlow, setShowEmailFlow] = useState(false);
   const [showWalletAuthFlow, setShowWalletAuthFlow] = useState(false);
 
-  const { setShowLinkNewWalletModal } = useDynamicModals();
-
   const handleWalletAuth = () => {
     setShowWalletAuthFlow(true);
-    setShowAuthFlow(true);
-    // setShowLinkNewWalletModal(true);
-
     setShouldCreateEmbeddedWallet(false);
+
+    setViews([
+      {
+        type: SdkViewType.Login,
+        sections: [
+          {
+            type: SdkViewSectionType.Wallet,
+          },
+        ],
+      },
+    ]);
 
     if (showEmailFlow) setShowEmailFlow(false);
   };
@@ -44,6 +50,10 @@ const Authenticate = ({
           </div>
         </div>
       )}
+
+      <div className="authenticate-option">
+        {showWalletAuthFlow && <DynamicEmbeddedWidget />}
+      </div>
 
       <div className="authenticate-option">
         {showEmailFlow && (
