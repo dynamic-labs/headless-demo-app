@@ -1,7 +1,7 @@
 import {
   useDynamicContext,
   useUserUpdateRequest,
-  useEmailVerificationRequest,
+  useOtpVerificationRequest,
 } from "@dynamic-labs/sdk-react-core";
 import { useState } from "react";
 
@@ -16,8 +16,8 @@ export const UserInfo = () => {
   const { user } = useDynamicContext();
   // Get the updateUser function from the useUserUpdateRequest hook
   const { updateUser } = useUserUpdateRequest();
-  // Get the verifyEmail function from the useEmailVerificationRequest hook
-  const { verifyEmail } = useEmailVerificationRequest();
+  // Get the verifyOtp function from the useEmailVerificationRequest hook
+  const { verifyOtp } = useOtpVerificationRequest();
 
   // Handler for the profile update form submission
   const onProfileFormSubmit = async (e) => {
@@ -49,7 +49,7 @@ export const UserInfo = () => {
       setLoading(true);
       const verificationToken = e.target[0].value;
       // Call the verifyEmail function with the entered verification token
-      await verifyEmail(verificationToken);
+      await verifyOtp(verificationToken);
     } catch (e) {
       console.log("Error", e);
     } finally {

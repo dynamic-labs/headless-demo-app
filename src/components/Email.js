@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useConnectWithEmailOtp } from "@dynamic-labs/sdk-react-core";
+import { useConnectWithOtp } from "@dynamic-labs/sdk-react-core";
 
 import { Input, Button, Flex, Checkbox } from "@chakra-ui/react";
 
@@ -13,7 +13,7 @@ const EmailSignup = ({
   const [waitingForOtp, setWaitingForOtp] = useState(false);
   const [waitingForAuth, setWaitingForAuth] = useState(false);
 
-  const { connectWithEmail, verifyOneTimePassword } = useConnectWithEmailOtp();
+  const { connectWithEmail, verifyOneTimePassword } = useConnectWithOtp();
 
   const onSubmitEmailHandler = async (event) => {
     event.preventDefault();
