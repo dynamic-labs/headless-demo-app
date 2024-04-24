@@ -1,4 +1,4 @@
-import { useDynamicModals } from "@dynamic-labs/sdk-react-core";
+import { useDynamicModals, DynamicMultiWalletPromptsWidget } from "@dynamic-labs/sdk-react-core";
 
 import { Button } from "@chakra-ui/react";
 
@@ -13,6 +13,7 @@ const LinkWallet = ({ text }) => {
       >
         {text}
       </Button>
+      <DynamicMultiWalletPromptsWidget />
     </div>
   );
 };
