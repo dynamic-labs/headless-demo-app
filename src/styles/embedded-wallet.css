@@ -1,0 +1,45 @@
+.embedded-wallet-actions-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 15px;
+}
+
+.embedded-wallet-actions-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+
+    p {
+        &.inactive {
+            color: red;
+        }
+        &.active {
+            color: green;
+        }
+    }
+
+    .cta-button {
+        width: 100%;
+        padding: 5px 10px;
+        background-color: #4779ff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+    .embedded-wallet-actions-created-passkeys {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding-top: 15px;
+
+        p {
+            text-decoration: underline;
+        }
+    }
+}

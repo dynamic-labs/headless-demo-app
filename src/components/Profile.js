@@ -8,6 +8,7 @@ import Logout from "./Logout";
 import LinkWallet from "./LinkWallet";
 import PrimaryWallet from "./PrimaryWallet";
 import CustomNetworkPicker from "./NetworkPicker";
+import EmbeddedWalletActions from "./EmbeddedWalletActions";
 
 import "react-tooltip/dist/react-tooltip.css";
 import Socials from "./Socials";
@@ -19,6 +20,7 @@ const Profile = () => {
   const { primaryWallet, user } = useDynamicContext();
   const [showProfile, setShowProfile] = useState(false);
   const [showWallets, setShowWallets] = useState(true);
+  const [showEmbeddedWalletsMethods, setShowEmbeddedWalletsMethods] = useState(false);
 
   return (
     <div className="profile-page">
@@ -79,6 +81,20 @@ const Profile = () => {
               </div>
             )}
           </div>
+        )}
+
+        {!showEmbeddedWalletsMethods ?(
+          <div className="embedded-wallets-actions">
+            <Button
+              onClick={() => {
+                setShowEmbeddedWalletsMethods(true);
+              }}
+            >
+              Embedded Wallets Actions
+            </Button>
+          </div>
+        ):(
+          <EmbeddedWalletActions />
         )}
       </div>
     </div>
