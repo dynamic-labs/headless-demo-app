@@ -130,3 +130,10 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.embedded-wallets-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
